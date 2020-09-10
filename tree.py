@@ -36,3 +36,14 @@ class Node:
         self._parent = node
         if node is not None:
             node.add_child(self)
+
+
+# node1 = Node("root1")
+# node2 = Node("root2")
+# node3 = Node("root3")
+
+# node3.parent = node1
+# node3.parent = node2
+
+# print(node1.children)
+# print(node2.children)
