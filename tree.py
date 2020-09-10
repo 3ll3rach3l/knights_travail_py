@@ -4,7 +4,33 @@ class Node:
         self._parent = None
         self._children = list()
 
+    def add_child(self, node):
+        if node not in self._children:
+            self._children.append(node)
+            node.parent = self
     
+    def remove_child(self, node):
+        if node in self._children:
+            self._children.remove(node)
+            node.parent = None
+    
+    def depth_search(self, value):
+        if self.value == value:
+            return self
+        for child in self.children:
+            result = child.depth_search(value)
+            if result is not None:
+                return result
+
+    def breadth_search(self, value):
+        if self.value == value:
+            return self
+        for child in self.children:
+            result = child.breadth_search(value)
+            if result is not None:
+                return result
+
+
     @property
     def value(self):
         return self._value  
@@ -17,15 +43,6 @@ class Node:
     def parent(self):
         return self._parent
     
-    def add_child(self, node):
-        if node not in self._children:
-            self._children.append(node)
-            node.parent = self
-    
-    def remove_child(self, node):
-        if node in self._children:
-            self._children.remove(node)
-            node.parent = None
     
     @parent.setter
     def parent(self, node):
